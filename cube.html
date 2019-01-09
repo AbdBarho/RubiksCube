@@ -1,19 +1,15 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-
-  <title>Cube</title>
-  <meta name="description" content="basic webpage for cube stuff">
-  <meta name="author" content="Abdullah Barhoum ©">
+  <title>Rubik's Cube</title>
+  <meta name="author" content="Abdullah Barhoum">
   <!-- Imports -->
-
-  <link href="https://fonts.googleapis.com/css?family=Abhaya+Libre" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel = Stylesheet type ="text/css" href ="css/styles.css">
-  <link rel = Stylesheet type ="text/css" href ="css/animations.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="Stylesheet" type="text/css" href="css/styles.css">
+  <link rel="Stylesheet" type="text/css" href="css/animations.css">
 
   <script src="scripts/cubeConstants.js"></script>
   <script src="scripts/cube.js"></script>
@@ -22,7 +18,7 @@
 
 
   <script>
-  var textCube = new Cube();
+    var textCube = new Cube();
     function createCubeUI()
     {
       create2dCubePieces();
@@ -42,13 +38,13 @@
   <!-- Home -->
   <div class="paper">
     <div id="Home">
-      <p>to do list for this website:</p>
+      <p>To do list for this website:</p>
       <ul>
         <li style="text-decoration: line-through;">add a scrambler</li>
         <li style="text-decoration: line-through;">add a playable rubiks cube, maybe ascii style</li>
         <li style="text-decoration: line-through;">add a 3d visual cube</li>
         <li>add an algorithum to solve or to learn to solve the cube </li>
-       </ul>
+      </ul>
     </div>
 
     <!-- Cube -->
@@ -56,31 +52,33 @@
     <hr style="border-width: 5px;">
     <h1>Rubik's Cube</h1>
     <div class="row" id="playableCube" style="margin-bottom: 1%;">
-      <div class="col-md-5" id="TextCube">
+      <div class="col-6" id="TextCube">
       </div>
-      <div class="col-md-2" id="Control">
+      <div class="col-2" id="Control">
       </div>
-      <div class="col-md-5">
+      <div class="col-4">
         <div id="MainCube3D">
           <div id="Cube3D"></div>
         </div>
       </div>
     </div>
+
+    <!-- Scramble Controls  -->
     <div id="scramblerControls">
       Scramble Length: <input id="scrambleLengthInput" type="number" maxlength="2" value="26">
       <button class="btn btn-primary" onclick="scramble()">Generate scramble</button>
       <button class="btn btn-primary" onclick="textCube.doAnAlg(lastScramble)">Apply scramble</button>
       <button class="btn btn-primary" onclick="textCube.reset()">Reset</button>
-      <p id ="scramble"></p>
+      <p id="scramble"></p>
       <button class="btn btn-primary" onclick="testScramble()">Calculate</button>
       <p style="display: inline;">if this scramble is applied
         <div id="numberOfRepeats" style="display: inline;"></div>
-        times it will restore the cube to the orginial state</p>
+        times it will restore the cube to the original state</p>
     </div>
     <p>made fully with javascript, took long enough, gg...</p>
-    <hr style="border-width: 5px;">
   </div>
 
 
 </body>
+
 </html>

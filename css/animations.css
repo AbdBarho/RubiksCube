@@ -1,3 +1,12 @@
+@keyframes infiniteRight {
+    0% {
+      transform: rotateX(-35deg) rotateY(-28deg);
+    }
+
+    100% {
+      transform: rotateX(-35deg) rotateY(332deg);
+    }
+}
 @keyframes rotateRight {
   0% {
     transform: rotateX(-35deg) rotateY(-28deg);
