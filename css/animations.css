@@ -90,3 +90,7 @@
 .ziRotation {
   animation: rotateAntiClockwise 300ms linear 1;
 }
+
+.rotateInfinite {
+  animation: infiniteRight 15s linear infinite;
+}

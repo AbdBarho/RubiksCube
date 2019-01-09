@@ -11,15 +11,18 @@ body {
   background-size: cover;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
-
 .paper {
   margin: 3%;
   padding: 5%;
   border-radius: 20px;
   background-color: white;
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 10px 10px 5px #333;
   font-size: large;
 }
+h1 {
+  text-align: center;
+}
+
 
 .row {
   width: 100%;
@@ -31,9 +34,6 @@ body {
   user-select: none;
 }
 
-h1 {
-  text-align: center;
-}
 
 #scramble {
   text-align: center;
@@ -48,14 +48,15 @@ h1 {
 
 #Control {
   height: 100%;
-  font-size: 20px;
+  font-size: 1.7vw;
 }
 
 .controlButton {
   padding: 0;
   margin: 0;
+  line-height: 0;
   width: 50%;
-  height: 8.3%;
+  height: calc(100%/12);
   border: 1px solid rgb(65, 52, 255);
   background-color: white;
   color: black;
@@ -74,7 +75,7 @@ h1 {
 }
 
 .controlButton:active {
-  background-color: red;
+  background-color: rgb(252, 98, 98);
 }
 
 /* 2D Cube */
@@ -110,10 +111,11 @@ h1 {
 #Cube3D {
   width: 18vw;
   height: 18vw;
+  line-height: 18vw;
+  padding: 20% 0;
   margin: 10% auto 0 auto;
   transform: rotateX(-35deg) rotateY(-28deg);
   transform-style: preserve-3d;
-  /* animation: infiniteRight 2s linear infinite; */
 }
 
 .square3d {

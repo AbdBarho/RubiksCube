@@ -11,23 +11,6 @@
   <link rel="Stylesheet" type="text/css" href="css/styles.css">
   <link rel="Stylesheet" type="text/css" href="css/animations.css">
 
-  <script src="scripts/cubeConstants.js"></script>
-  <script src="scripts/cube.js"></script>
-  <script src="scripts/cubeInterface.js"></script>
-  <script src="scripts/scrambler.js"></script>
-
-
-  <script>
-    var textCube = new Cube();
-    function createCubeUI()
-    {
-      create2dCubePieces();
-      createControlButtons();
-      create3dCube();
-      textCube.update();
-      scramble();
-    }
-    </script>
 </head>
 
 <!-- Webpage begin -->
@@ -37,20 +20,17 @@
 
   <!-- Home -->
   <div class="paper">
-    <div id="Home">
-      <p>To do list for this website:</p>
-      <ul>
-        <li style="text-decoration: line-through;">add a scrambler</li>
-        <li style="text-decoration: line-through;">add a playable rubiks cube, maybe ascii style</li>
-        <li style="text-decoration: line-through;">add a 3d visual cube</li>
-        <li>add an algorithum to solve or to learn to solve the cube </li>
-      </ul>
-    </div>
+    <h1>Rubik's Cube</h1>
+    <p>To do list for this website:</p>
+    <ul>
+      <li style="text-decoration: line-through;">add a scrambler</li>
+      <li style="text-decoration: line-through;">add a playable rubik's cube, maybe ascii style</li>
+      <li style="text-decoration: line-through;">add a 3d visual cube</li>
+      <li>add an AI to solve or to learn to solve the cube </li>
+    </ul>
 
     <!-- Cube -->
-
     <hr style="border-width: 5px;">
-    <h1>Rubik's Cube</h1>
     <div class="row" id="playableCube" style="margin-bottom: 1%;">
       <div class="col-6" id="TextCube">
       </div>
@@ -65,19 +45,33 @@
 
     <!-- Scramble Controls  -->
     <div id="scramblerControls">
-      Scramble Length: <input id="scrambleLengthInput" type="number" maxlength="2" value="26">
+      Scramble Length: <input id="scrambleLengthInput" type="number" max="100" min="0" value="26">
       <button class="btn btn-primary" onclick="scramble()">Generate scramble</button>
       <button class="btn btn-primary" onclick="textCube.doAnAlg(lastScramble)">Apply scramble</button>
       <button class="btn btn-primary" onclick="textCube.reset()">Reset</button>
       <p id="scramble"></p>
       <button class="btn btn-primary" onclick="testScramble()">Calculate</button>
-      <p style="display: inline;">if this scramble is applied
-        <div id="numberOfRepeats" style="display: inline;"></div>
-        times it will restore the cube to the original state</p>
+      <span>if this scramble is applied <span id="numberOfRepeats"></span> times it will restore the cube to the original state</span>
     </div>
     <p>made fully with javascript, took long enough, gg...</p>
   </div>
 
+  <!-- Code -->
+  <script src="scripts/cubeConstants.js"></script>
+  <script src="scripts/cube.js"></script>
+  <script src="scripts/cubeInterface.js"></script>
+  <script src="scripts/scrambler.js"></script>
+  <script>
+    var textCube = new Cube();
+
+    function createCubeUI() {
+      create2dCubePieces();
+      createControlButtons();
+      create3dCube();
+      textCube.update();
+      scramble();
+    }
+  </script>
 
 </body>
 

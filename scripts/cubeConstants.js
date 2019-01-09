@@ -1,26 +1,22 @@
-var defaultColors = ["yellow","blue","red","green","#ff7200","white"];
-var faces =["Top","Left","Front","Right","Back","Bottom"];
+var faces = ["Top", "Left", "Front", "Right", "Back", "Bottom"];
+let colorLetters = ["y", "b", "r", "g", "o", "w"];
+var defaultColors = ["yellow", "blue", "rgb(200, 0, 0)", "green", "#ff7200", "white"];
 
-var letterToColor = function(letter) {
-  switch (letter) {
-    case "y": return defaultColors[0];
-    case "b": return defaultColors[1];
-    case "r": return defaultColors[2];
-    case "g": return defaultColors[3];
-    case "o": return defaultColors[4];
-    case "w": return defaultColors[5];
-    default : console.log("color not found");
-  }
-};
+function letterToColor(letter) {
+  let index = colorLetters.indexOf(letter);
+  if (index === -1)
+    throw "Unknown letter given: " + letter;
+  return defaultColors[index];
+}
 
 var defaultFaceColor = {
-    "Top"   : letterToColor("y"),
-    "Left"  : letterToColor("b"),
-    "Front" : letterToColor("r"),
-    "Right" : letterToColor("g"),
-    "Back"  : letterToColor("o"),
-    "Bottom": letterToColor("w")
-  };
+  Top: letterToColor("y"),
+  Left: letterToColor("b"),
+  Front: letterToColor("r"),
+  Right: letterToColor("g"),
+  Back: letterToColor("o"),
+  Bottom: letterToColor("w")
+};
 
 var defaultCorners = {
   "A":"y",  "B":"y",  "C":"y",  "D":"y",  "E":"b",  "F":"b",  "G":"b",  "H":"b",
@@ -62,7 +58,7 @@ var allMiddleMoves = ["M","Mi","E","Ei","S","Si"];
 
 var allRotations = ["x","xi","y","yi","z","zi"];
 
-function determineMove (moveChar,cube){
+function determineMove (moveChar,cube, shouldRender = true){
   var move           = moveChar.charAt(0);
   var isRotation     = allRotations.indexOf(moveChar) != -1;
   var isMiddleMove   = allMiddleMoves.indexOf(moveChar) != -1;
@@ -75,7 +71,8 @@ function determineMove (moveChar,cube){
   else
     cube.doAMove(move,isInverseMove);
 
-  cube.update();
+  if(shouldRender)
+    cube.update();
 }
 
 function invertMove (moveChar){

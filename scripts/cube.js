@@ -31,8 +31,10 @@ function Cube() {
     cubeRef.classList.add(animationName);
     cubeRef.style.animationPlayState = "running";
     setTimeout(() => {
-      moves.forEach((x) => determineMove(x, this));
+      // debugger
+      moves.forEach((x) => determineMove(x, this, false));
       cubeRef.classList.remove(animationName);
+      this.update();
     }, 300);
   };
 
@@ -43,7 +45,7 @@ function Cube() {
       temp.push(cubePieces[toBeMovedPieces[x]]);
 
     temp.unshift(temp.pop());
-    
+
     for (x in toBeMovedPieces)
       cubePieces[toBeMovedPieces[x]] = temp[x];
 

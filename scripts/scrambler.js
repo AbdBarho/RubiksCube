@@ -1,3 +1,6 @@
+const lengthInput = document.getElementById("scrambleLengthInput");
+const scrambleElement = document.getElementById("scramble");
+const numOfRepeatsElement = document.getElementById("numberOfRepeats");
 var lastScramble = [];
 
 function randomMove() {
@@ -5,28 +8,28 @@ function randomMove() {
 }
 
 function scramble() {
-  var inputedValue = document.getElementById("scrambleLengthInput").value;
-  var scrambleLength = inputedValue > 0 ? inputedValue : 25;
+  var inputValue = lengthInput.value;
+  var scrambleLength = inputValue > 0 ? inputValue : 25;
   var list = [randomMove()];
-  var isRedundent = false;
+  var isRedundant = false;
   while (list.length < scrambleLength) {
     var last = list[list.length - 1];
     var x = randomMove();
-    if (last == x && !isRedundent) {
-      isRedundent = true;
+    if (last == x && !isRedundant) {
+      isRedundant = true;
       list.push(x);
-    } else if ((last == x && isRedundent) || last == invertChar(x)) {
+    } else if ((last == x && isRedundant) || last == invertChar(x)) {
       while (last == x || last == invertChar(x))
         x = randomMove();
-      isRedundent = false;
+      isRedundant = false;
       list.push(x);
     } else {
-      isRedundent = false;
+      isRedundant = false;
       list.push(x);
     }
   }
   lastScramble = list;
-  document.getElementById("scramble").innerHTML = list.join(" ");
+ scrambleElement.innerHTML = list.join(" ");
 }
 
 function isDone(cube) {
@@ -36,27 +39,26 @@ function isDone(cube) {
 }
 
 function testScramble() {
-  document.getElementById("numberOfRepeats").innerHTML = "calculating...";
+  numOfRepeatsElement.textContent = "calculating...";
   var testCube = new Cube();
   var counter = 1;
   testCube.doAnAlg(lastScramble);
   let runOnce = () => {
     if (isDone(testCube)) {
-      document.getElementById("numberOfRepeats").innerHTML = counter;
+      numOfRepeatsElement.textContent = counter;
       textCube.update();
       return;
     }
     counter++;
     testCube.doAnAlg(lastScramble);
-    setTimeout(() => runOnce(), 0);
+    requestAnimationFrame(runOnce);
   };
   runOnce();
 }
 
 function compare(a, b) {
-  for (x in a) {
+  for (x in a)
     if (a[x] != b[x])
       return false;
-  }
   return true;
 }
