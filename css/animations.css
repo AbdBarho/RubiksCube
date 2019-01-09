@@ -1,0 +1,83 @@
+@keyframes rotateRight {
+  0% {
+    transform: rotateX(-35deg) rotateY(-28deg);
+  }
+
+  100% {
+    transform: rotateX(-35deg) rotateY(62deg);
+  }
+}
+
+@keyframes rotateLeft {
+  0% {
+    transform: rotateX(-35deg) rotateY(-28deg);
+  }
+
+  100% {
+    transform: rotateX(-35deg) rotateY(-118deg);
+  }
+}
+
+@keyframes rotateUp {
+  0% {
+    transform: rotateX(-35deg) rotateY(-28deg);
+  }
+
+  100% {
+    transform: rotateX(55deg) rotateZ(28deg);
+  }
+}
+
+@keyframes rotateDown {
+  0% {
+    transform: rotateX(-35deg) rotateY(-28deg);
+  }
+
+  100% {
+    transform: rotateX(-125deg) rotateZ(-28deg);
+  }
+}
+
+@keyframes rotateClockwise {
+  0% {
+    transform: rotateX(-35deg) rotateY(-28deg);
+  }
+
+  100% {
+    transform: rotateX(-35deg) rotateY(-28deg) rotateZ(90deg);
+  }
+}
+
+@keyframes rotateAntiClockwise {
+  0% {
+    transform: rotateX(-35deg) rotateY(-28deg);
+  }
+
+  100% {
+    transform: rotateX(-35deg) rotateY(-28deg) rotateZ(-90deg);
+  }
+}
+
+.yiRotation {
+  animation: rotateRight 300ms linear 1;
+}
+
+.yRotation {
+  animation: rotateLeft 300ms linear 1;
+}
+
+.xRotation {
+  animation: rotateUp 300ms linear 1;
+}
+
+.xiRotation {
+  animation: rotateDown 300ms linear 1;
+}
+
+.zRotation {
+  animation: rotateClockwise 300ms linear 1;
+}
+
+.ziRotation {
+  animation: rotateAntiClockwise 300ms linear 1;
+}
