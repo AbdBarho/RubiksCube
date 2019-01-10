@@ -1,64 +1,60 @@
+import CubeConfig from "./cubeConfig";
+import Cube from "./cube";
+
 const lengthInput = document.getElementById("scrambleLengthInput");
 const scrambleElement = document.getElementById("scramble");
 const numOfRepeatsElement = document.getElementById("numberOfRepeats");
-var lastScramble = [];
 
-function randomMove() {
-  return allNormalMoves[Math.floor(Math.random() * allNormalMoves.length)];
-}
-
-function scramble() {
-  var inputValue = lengthInput.value;
-  var scrambleLength = inputValue > 0 ? inputValue : 25;
-  var list = [randomMove()];
-  var isRedundant = false;
-  while (list.length < scrambleLength) {
-    var last = list[list.length - 1];
-    var x = randomMove();
-    if (last == x && !isRedundant) {
-      isRedundant = true;
-      list.push(x);
-    } else if ((last == x && isRedundant) || last == invertChar(x)) {
-      while (last == x || last == invertChar(x))
-        x = randomMove();
-      isRedundant = false;
-      list.push(x);
-    } else {
-      isRedundant = false;
-      list.push(x);
-    }
+export default class Scrambler {
+  constructor(cube) {
+    this.cube = cube;
+    this.lastScramble = [];
   }
-  lastScramble = list;
- scrambleElement.innerHTML = list.join(" ");
-}
 
-function isDone(cube) {
-  return compare(cube.corners, defaultCorners) &&
-    compare(cube.edges, defaultEdges) &&
-    compare(cube.middlePieces, defaultMiddlePieces);
-}
-
-function testScramble() {
-  numOfRepeatsElement.textContent = "calculating...";
-  var testCube = new Cube();
-  var counter = 1;
-  testCube.doAnAlg(lastScramble);
-  let runOnce = () => {
-    if (isDone(testCube)) {
-      numOfRepeatsElement.textContent = counter;
-      textCube.update();
-      return;
+  generateScramble() {
+    let inputValue = lengthInput.value;
+    let scrambleLength = Math.min(Math.max(0, inputValue), 50);
+    let list = [CubeConfig.randomMove()];
+    let isRedundant = false;
+    while (list.length < scrambleLength) {
+      let last = list[list.length - 1];
+      let x = CubeConfig.randomMove();
+      if (last == x && !isRedundant) {
+        isRedundant = true;
+        list.push(x);
+      } else if ((last == x && isRedundant) || last == CubeConfig.invertChar(x)) {
+        while (last == x || last == CubeConfig.invertChar(x))
+          x = CubeConfig.randomMove();
+        isRedundant = false;
+        list.push(x);
+      } else {
+        isRedundant = false;
+        list.push(x);
+      }
     }
-    counter++;
-    testCube.doAnAlg(lastScramble);
-    requestAnimationFrame(runOnce);
-  };
-  runOnce();
-}
+    this.lastScramble = list;
+    scrambleElement.innerHTML = list.join(" ");
+  }
 
-function compare(a, b) {
-  for (x in a)
-    if (a[x] != b[x])
-      return false;
-  return true;
+  applyScramble() {
+    this.cube.doAnAlg(this.lastScramble);
+  }
+
+  testScramble() {
+    numOfRepeatsElement.textContent = "calculating...";
+    let testCube = new Cube();
+    let counter = 1;
+    testCube.doAnAlg(this.lastScramble);
+    let runOnce = () => {
+      if (testCube.isDone()) {
+        numOfRepeatsElement.textContent = counter;
+        this.cube.update();
+        return;
+      }
+      counter++;
+      testCube.doAnAlg(this.lastScramble);
+      requestAnimationFrame(runOnce);
+    };
+    runOnce();
+  }
 }

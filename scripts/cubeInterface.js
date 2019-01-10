@@ -1,13 +1,17 @@
+import CubeConfig from "./cubeConfig";
+const CubeDiv = document.getElementById("Cube3D");
+
 function create2dCubePieces() {
-  var piecesCounter = 0;
-  var commandString = "";
-  for (face in faces) {
+  let piecesCounter = 0;
+  let commandString = "";
+  let faces = CubeConfig.getFaces();
+  for (let face of faces) {
     //begin by creating a divider to 3 columns
     commandString += '<div class="col-4">';
     //add name of the face as text
-    commandString += '<p class="faceText">' + faces[face] + '</p>';
+    commandString += '<p class="faceText">' + face + '</p>';
     //add a face div to make it easier to copy to 3d mode
-    commandString += '<div id="' + faces[face] + '">';
+    commandString += '<div id="' + face + '">';
     //add first row of titles
     commandString += '<div class="row">';
     //add corner + edge + corner
@@ -21,7 +25,7 @@ function create2dCubePieces() {
     //add edge + center piece + edge
     commandString += '<div class="square" id="edge' + (piecesCounter + 3) + '"></div>';
     commandString += '<div class="square" id="center' + (piecesCounter / 4) + '" style="background-color:' +
-      defaultFaceColor[faces[face]] + '"></div>';
+      CubeConfig.getFaceColor(face) + '"></div>';
     commandString += '<div class="square" id="edge' + (piecesCounter + 1) + '"></div>';
     //End second row
     commandString += '</div>';
@@ -33,9 +37,9 @@ function create2dCubePieces() {
     commandString += '<div class="square" id="corner' + (piecesCounter + 2) + '"></div>';
     //End third row
     commandString += '</div>';
-    //end facediv
+    //end face div
     commandString += '</div>';
-    //End coloumn
+    //End column
     commandString += '</div>';
     //the face is now done
     //increment pieces counter
@@ -46,33 +50,31 @@ function create2dCubePieces() {
 }
 
 function createControlButtons() {
-  var commandString = "";
-  var moveList = allNormalMoves.concat(allMiddleMoves.concat(allRotations));
-  //add buttons to control panel
-  for (x in moveList) {
-    //avoid html errors
-    var onClickString = 'determineMove("' + moveList[x] + '",textCube)>';
-    commandString += '<button class="controlButton" onclick=' +
-      onClickString + moveList[x] + '</button>';
-  }
+  let commandString = "";
+  let moveList = CubeConfig.getAllPossibleMoves();
+  for (let move of moveList)
+    commandString += '<button class="controlButton">' + move + '</button>';
   //after the command is created, add it to the page
   document.getElementById("Control").innerHTML = commandString;
 
 }
 
 function create3dCube() {
-  var cubeDiv = document.getElementById("Cube3D");
-  for (face in faces) {
-    var copy = document.getElementById(faces[face]).cloneNode(true);
+  for (let face of CubeConfig.getFaces()) {
+    let copy = document.getElementById(face).cloneNode(true);
     copy.id += "3D";
-    var innerDivs = copy.getElementsByTagName("*");
-    for (var i = 0; i < innerDivs.length; i++)
+    let innerDivs = copy.getElementsByTagName("*");
+    for (let i = 0; i < innerDivs.length; i++)
       if (innerDivs[i].classList.contains("square")) {
         innerDivs[i].className = "square3d";
         innerDivs[i].id += "3D";
       }
-
-    cubeDiv.appendChild(copy);
-
+    CubeDiv.appendChild(copy);
   }
+}
+
+export default function createCubeUI() {
+  create2dCubePieces();
+  createControlButtons();
+  create3dCube();
 }
