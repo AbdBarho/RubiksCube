@@ -1,12 +1,12 @@
-const FACES = ["Top", "Left", "Front", "Right", "Back", "Bottom"];
-const COLOR_LETTERS = ["y", "b", "r", "g", "o", "w"];
-const DEFAULT_COLORS = ["yellow", "blue", "rgb(200, 0, 0)", "green", "#ff7200", "white"];
+let FACES = ["Top", "Left", "Front", "Right", "Back", "Bottom"];
+let COLOR_LETTERS = ["y", "b", "r", "g", "o", "w"];
+let DEFAULT_COLORS = ["yellow", "blue", "rgb(200, 0, 0)", "green", "#ff7200", "white"];
 
-const NORMAL_MOVES = ["R", "Ri", "U", "Ui", "F", "Fi", "L", "Li", "D", "Di", "B", "Bi"];
-const MIDDLE_MOVES = ["M", "Mi", "E", "Ei", "S", "Si"];
-const ROTATIONS = ["x", "xi", "y", "yi", "z", "zi"];
+let NORMAL_MOVES = ["R", "Ri", "U", "Ui", "F", "Fi", "L", "Li", "D", "Di", "B", "Bi"];
+let MIDDLE_MOVES = ["M", "Mi", "E", "Ei", "S", "Si"];
+let ROTATIONS = ["x", "xi", "y", "yi", "z", "zi"];
 
-const DEFAULT_CORNERS = {
+let DEFAULT_CORNERS = {
   A: "y", B: "y", C: "y", D: "y",
   E: "b", F: "b", G: "b", H: "b",
   I: "r", J: "r", K: "r", L: "r",
@@ -15,7 +15,7 @@ const DEFAULT_CORNERS = {
   U: "w", V: "w", W: "w", X: "w"
 };
 
-const DEFAULT_EDGES = {
+let DEFAULT_EDGES = {
   A: "y", B: "y", C: "y", D: "y",
   E: "b", F: "b", G: "b", H: "b",
   I: "r", J: "r", K: "r", L: "r",
@@ -24,12 +24,12 @@ const DEFAULT_EDGES = {
   U: "w", V: "w", W: "w", X: "w"
 };
 
-const DEFAULT_MIDDLE_PIECES = {
+let DEFAULT_MIDDLE_PIECES = {
   A: "y", B: "b", C: "r", D: "g", E: "o", F: "w"
 };
 
 
-const normalMoves = {
+let normalMoves = {
   U:[["J","F","R","N"],["I","E","Q","M"],["A","B","C","D"]],
   L:[["A","I","U","S"],["D","L","X","R"],["E","F","G","H"]],
   F:[["D","M","V","G"],["C","P","U","F"],["I","J","K","L"]],
@@ -40,7 +40,7 @@ const normalMoves = {
   E:[["L","P","T","H"],["J","N","R","F"],["B","C","D","E"]],
   S:[["D","M","V","G"],["B","O","X","E"],["A","D","F","B"]]
 };
-const rotations = {
+let rotations = {
   x: ["R", "Li", "Mi"],
   y: ["U", "Di", "Ei"],
   z: ["F", "Bi", "S"]

@@ -18,13 +18,11 @@
   },
   "homepage": "https://github.com/AbdBarho/RubiksCube#readme",
   "devDependencies": {
-    "webpack": "^4.28.1",
-    "webpack-cli": "^3.2.1",
-    "base64-inline-loader": "^1.1.1",
-    "css-loader": "^0.28.11",
-    "inline-source": "^6.1.5",
-    "style-loader": "^0.21.0",
     "bootstrap": "^4.2.1",
-    "eslint": "^5.12.0"
+    "inline-source": "^6.1.8",
+    "inline-source-cli": "^1.2.0",
+    "lightercollective": "^0.2.0",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
   }
 }

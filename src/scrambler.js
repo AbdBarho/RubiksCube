@@ -1,14 +1,15 @@
-import CubeConfig from "./cubeConfig";
 import Cube from "./cube";
+import CubeConfig from "./cubeConfig";
 
-const lengthInput = document.getElementById("scrambleLengthInput");
-const scrambleElement = document.getElementById("scramble");
-const numOfRepeatsElement = document.getElementById("numberOfRepeats");
+let lengthInput = document.getElementById("scrambleLengthInput");
+let scrambleElement = document.getElementById("scramble");
+let numOfRepeatsElement = document.getElementById("numberOfRepeats");
 
 export default class Scrambler {
   constructor(cube) {
     this.cube = cube;
     this.lastScramble = [];
+    this.isCalculating = false;
   }
 
   generateScramble() {
@@ -33,7 +34,8 @@ export default class Scrambler {
       }
     }
     this.lastScramble = list;
-    scrambleElement.innerHTML = list.join(" ");
+    scrambleElement.textContent = list.join(" ");
+    numOfRepeatsElement.textContent = "???"
   }
 
   applyScramble() {
@@ -41,6 +43,9 @@ export default class Scrambler {
   }
 
   testScramble() {
+    if (this.isCalculating)
+      return;
+    this.isCalculating = true;
     numOfRepeatsElement.textContent = "calculating...";
     let testCube = new Cube();
     let counter = 1;
@@ -48,6 +53,7 @@ export default class Scrambler {
     let runOnce = () => {
       if (testCube.isDone()) {
         numOfRepeatsElement.textContent = counter;
+        this.isCalculating = false;
         this.cube.update();
         return;
       }

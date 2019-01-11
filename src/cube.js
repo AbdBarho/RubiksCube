@@ -1,5 +1,5 @@
 import CubeConfig from "./cubeConfig";
-const cubeRef = document.getElementById("Cube3D");
+let cubeRef = document.getElementById("Cube3D");
 
 export default class Cube {
   constructor() {
@@ -19,7 +19,7 @@ export default class Cube {
     else
       this.doANormalMove(move, isInverseMove);
 
-    if (shouldRender)
+    if (!isRotation && shouldRender)
       this.update();
   }
 
@@ -49,7 +49,6 @@ export default class Cube {
       cubeRef.classList.remove(animationName);
       console.log("now")
       this.update();
-      console.log("after")
     }, 300);
   }
 

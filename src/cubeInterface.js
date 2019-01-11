@@ -1,5 +1,5 @@
 import CubeConfig from "./cubeConfig";
-const CubeDiv = document.getElementById("Cube3D");
+let CubeDiv = document.getElementById("Cube3D");
 
 function create2dCubePieces() {
   let piecesCounter = 0;
