@@ -1,6 +1,6 @@
-import Cube from "./src/cube";
-import createCubeUI from "./src/cubeInterface";
-import Scrambler from "./src/scrambler";
+import Cube from "./cube";
+import createCubeUI from "./cubeInterface";
+import Scrambler from "./scrambler";
 
 
 createCubeUI();

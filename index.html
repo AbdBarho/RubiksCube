@@ -6,11 +6,13 @@
   <meta charset="UTF-8">
   <title>Rubik's Cube</title>
   <meta name="author" content="Abdullah Barhoum">
-<!-- Imports -->
-<link inline rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link inline rel="Stylesheet" type="text/css" href="css/styles.css">
-  <link inline rel="Stylesheet" type="text/css" href="css/animations.css">
+  <!-- Imports -->
 
+  <style>
+    @import url('node_modules/bootstrap/dist/css/bootstrap.min.css');
+    @import url('./src/css/styles.css');
+    @import url('./src/css/animations.css');
+  </style>
 </head>
 
 <!-- Webpage begin -->
@@ -51,13 +53,14 @@
       <button class="btn btn-primary" id="reset">Reset</button>
       <p id="scramble"></p>
       <button class="btn btn-primary" id="calculate">Calculate</button>
-      <span>if this scramble is applied <span id="numberOfRepeats"></span> times it will restore the cube to the original state</span>
+      <span>if this scramble is applied <span id="numberOfRepeats"></span> times it will restore the cube to the
+        original state</span>
     </div>
-    <p>made fully with javascript, took long enough, gg...</p>
   </div>
 
-  <!-- Code -->
-  <script inline src="dist/bundle.js"></script>
+  <script type="module">
+    import "./src/app.js";
+  </script>
 
 </body>
 
